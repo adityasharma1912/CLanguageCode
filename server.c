@@ -1,3 +1,11 @@
+/*
+ * A simple program to show multi-threading in C
+ * using POSIX thread with slight introduction of
+ * mutual exclusion
+ *
+ * Created By : Aditya Sharma
+ */
+
 #include<stdio.h>
 #include<pthread.h>
 
@@ -21,7 +29,7 @@ int *funcRoutine(void *argv) {
 
 //this routine must execute first hence I am using mutex here...
 int *threadZeroRoutine(void *argv) {
-//	pthread_mutex_lock(&thread_lock);
+	//	pthread_mutex_lock(&thread_lock);
 	int value_in_thread = (int *) argv;
 	//set global variable to some value first... here incrementing by 15
 	for (int i = 1; i < 6; i++) {
