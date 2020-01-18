@@ -1,3 +1,4 @@
+//File Handling code
 #include<stdio.h>
 #define MAX_SIZE_CLIENT 1024*1024*2  // 2MB
 #define PAYLOAD_SIZE 510
