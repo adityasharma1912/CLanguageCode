@@ -2,7 +2,7 @@
  * A simple program to show multi-threading in C
  * using POSIX thread with slight introduction of
  * mutual exclusion
- *
+ * year: 2020
  * Created By : Aditya Sharma
  */
 
