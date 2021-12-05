@@ -1,0 +1,35 @@
+1.) Compile the program using "make" command
+2.) MyPatterns and MyURLs files is placed in the same folder as the main program.
+3.) Run the program using following command:
+./ume <Patterns-File-Name> <URLs-File-Name>
+Example: ./ume MyPatterns MyURLs
+4.) Please use "make clean" to delete output files
+
+***********************
+Unit Testing Results with content already present in MyPatterns and MyURLs file:
+***********************
+$ ./ume MyPatterns MyURLs 
+www.alpha.com,0,2
+bravo.ca.us/one-layer,1
+charlie.ca.us/two/layer,1
+www.delta.com,2
+echo.com/simple
+www.mail.google.com/profile/user/number,3
+
+***********************
+Memory Leak Test with Valgrind:
+***********************
+$ valgrind --tool=memcheck ./ume MyPatterns MyURLs
+==1242760== Memcheck, a memory error detector
+==1242760== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1242760== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1242760== Command: ./ume MyPatterns MyURLs
+...
+...
+==1242396== HEAP SUMMARY:
+==1242396==     in use at exit: 0 bytes in 0 blocks
+==1242396==   total heap usage: 45 allocs, 45 frees, 29,576 bytes allocated
+==1242396==
+==1242396== All heap blocks were freed -- no leaks are possible
+...
+...
