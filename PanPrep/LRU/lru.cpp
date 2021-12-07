@@ -4,34 +4,34 @@
 // simple single threaded LRUCache
 using namespace std;
 
+class ListNode {
+public:
+    ListNode *prev;
+    ListNode *next;
+    int key;
+    int value;
+
+    ListNode(int key, int value) {
+        this->key = key;
+        this->value = value;
+    }
+
+    ListNode() {}
+
+    int getVal() {
+        return this->value;
+    }
+
+    int getKey() {
+        return this->key;
+    }
+
+    void setVal(int val) {
+        this->value = val;
+    }
+};
+
 class LRUCache {
-    class ListNode {
-    public:
-        ListNode *prev;
-        ListNode *next;
-        int key;
-        int value;
-
-        ListNode(int key, int value) {
-            this->key = key;
-            this->value = value;
-        }
-
-        ListNode() {}
-
-        int getVal() {
-            return this->value;
-        }
-
-        int getKey() {
-            return this->key;
-        }
-
-        void setVal(int val) {
-            this->value = val;
-        }
-    };
-
     unordered_map<int, ListNode *> cache;
     // each entry in linked list is <key, value>
     ListNode *head;
@@ -59,7 +59,7 @@ public:
 
     int get(int key) {
         if (cache.find(key) == cache.end()) return -1;
-        ListNode *valNode = cache.at(key);
+        ListNode *valNode = cache[key];
 
         //remove node from the dll and put to end;
         //remove:
@@ -90,12 +90,13 @@ public:
                 head->next->prev = head;
                 itemToDel->prev = NULL;
                 itemToDel->next = NULL;
-                //delete from hmap
+                //delete from hmap and free memory
                 cache.erase(keyToDel);
                 delete (itemToDel);
             }
             //insert new element in hmap
             cache.insert(make_pair(key, newNode));
+//            cache.insert(pair<int, ListNode *>(key, newNode));
             //put to end of dll
             tail->prev->next = newNode;
             newNode->prev = tail->prev;
